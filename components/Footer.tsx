@@ -1,5 +1,6 @@
 import React, {useState, useMemo} from 'react';
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {HomeScreen, FamilyScreen, MedicalScreen, MyPage} from '../src/screens';
 
 const Footer = () => {
@@ -11,21 +12,29 @@ const Footer = () => {
         key: 'home',
         title: 'Home',
         component: HomeScreen,
+        focusedIcon: 'home',
+        unfocusedIcon: 'home-outline',
       },
       {
         key: 'family',
         title: '가족 등록',
         component: FamilyScreen,
+        focusedIcon: 'account-multiple-plus',
+        unfocusedIcon: 'account-multiple-plus-outline',
       },
       {
         key: 'medical',
         title: '가족력 등록',
         component: MedicalScreen,
+        focusedIcon: 'medical-bag',
+        unfocusedIcon: 'medical-bag',
       },
       {
         key: 'account',
         title: '내 정보',
         component: MyPage,
+        focusedIcon: 'account-circle',
+        unfocusedIcon: 'account-circle-outline',
       },
     ],
     [],
@@ -42,9 +51,18 @@ const Footer = () => {
         {routes.map((route, idx) => (
           <TouchableOpacity
             key={route.key}
-            style={[styles.tab, index === idx && styles.activeTab]}
+            style={[styles.tab]}
             onPress={() => setIndex(idx)}>
-            <Text style={[styles.tabText, index === idx && styles.activeText]}>
+            <Icon
+              name={index === idx ? route.focusedIcon : route.unfocusedIcon}
+              size={24}
+              color={index === idx ? '#6200ee' : '#757575'}
+            />
+            <Text
+              style={[
+                styles.tabText,
+                index === idx ? styles.activeText : styles.inactiveText,
+              ]}>
               {route.title}
             </Text>
           </TouchableOpacity>
@@ -66,24 +84,32 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopWidth: 1,
     borderTopColor: '#e0e0e0',
-    height: 60,
+    height: 88,
+    paddingBottom: 16,
+    elevation: 8,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: -2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
   },
   tab: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 10,
-  },
-  activeTab: {
-    backgroundColor: '#f0f0f0',
+    padding: 8,
   },
   tabText: {
     fontSize: 12,
-    color: '#666',
+    marginTop: 4,
   },
   activeText: {
-    color: '#000',
-    fontWeight: 'bold',
+    color: '#6200ee',
+  },
+  inactiveText: {
+    color: '#757575',
   },
 });
 
