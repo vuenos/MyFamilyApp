@@ -1,7 +1,3 @@
 export default function HomeScreen() {
-  return (
-      <>
-        HomeScreen
-      </>
-  )
+  return <>HomeScreen?</>;
 }
