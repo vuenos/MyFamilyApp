@@ -9,6 +9,7 @@ import ScrollView = Animated.ScrollView;
 interface FamilyMember {
   name: string;
   age: number;
+  photo: string | null;
   relation: string;
   phoneNumber: string;
   birthdate: string;
