@@ -50,7 +50,7 @@ export default function FamilyScreen() {
   const [familyMember, setFamilyMember] = useState<FamilyMember>({
     name: '',
     age: 0,
-    relation: '기타',
+    relation: '본인',
     gender: '남성',
     photo: null,
     phoneNumber: '',
@@ -62,6 +62,7 @@ export default function FamilyScreen() {
   const [fetchError, setFetchError] = useState<string | null>(null);
 
   const relationOptions: RelationType[] = [
+    '본인',
     '아버지',
     '어머니',
     '남편',
@@ -69,7 +70,6 @@ export default function FamilyScreen() {
     '아들',
     '딸',
     '형제/자매',
-    '본인',
   ];
 
   const selectImage = async () => {
@@ -195,21 +195,26 @@ export default function FamilyScreen() {
           style={styles.input}
         />
 
-        <Text style={styles.label}>관계</Text>
-        <SegmentedButtons
-          value={familyMember.relation}
-          onValueChange={value =>
-            setFamilyMember(prev => ({
-              ...prev,
-              relation: value as RelationType,
-            }))
-          }
-          buttons={relationOptions.map(relation => ({
-            value: relation,
-            label: relation,
-          }))}
-          style={styles.segmentedButtons}
-        />
+        <Text style={styles.label}>나와의 관계</Text>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.relationScrollContainer}>
+          <SegmentedButtons
+            value={familyMember.relation}
+            onValueChange={value =>
+              setFamilyMember(prev => ({
+                ...prev,
+                relation: value as RelationType,
+              }))
+            }
+            buttons={relationOptions.map(relation => ({
+              value: relation,
+              label: relation,
+            }))}
+            style={styles.relationSegmentedButtons}
+          />
+        </ScrollView>
 
         <SegmentedButtons
           value={familyMember.gender}
@@ -343,5 +348,13 @@ const styles = StyleSheet.create({
   errorText: {
     fontSize: 16,
     marginVertical: 12,
+  },
+  relationScrollContainer: {
+    paddingVertical: 8,
+    paddingHorizontal: 2,
+  },
+  relationSegmentedButtons: {
+    flexDirection: 'row',
+    gap: 0,
   },
 });
