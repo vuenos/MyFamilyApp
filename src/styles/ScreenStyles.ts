@@ -36,7 +36,8 @@ export const ScreenStyles = (theme: MD3Theme) =>
       padding: 16,
       marginLeft: 'auto',
       marginRight: 'auto',
-      marginBottom: 24,
+      marginTop: 16,
+      marginBottom: 16,
       shadowColor: '#000',
       shadowOffset: {width: 0, height: 4},
       shadowOpacity: 0.1,
@@ -52,9 +53,9 @@ export const ScreenStyles = (theme: MD3Theme) =>
       marginRight: 12,
     },
     avatar: {
-      width: 40,
-      height: 40,
-      borderRadius: 20,
+      width: 56,
+      height: 56,
+      borderRadius: 28,
     },
     headerText: {
       flex: 1,
@@ -74,14 +75,15 @@ export const ScreenStyles = (theme: MD3Theme) =>
       marginTop: 8,
     },
     text: {
-      fontSize: 14,
+      fontSize: 16,
       color: '#333',
       marginBottom: 4,
     },
     cardFooter: {
-      marginTop: 12,
+      display: 'flex',
+      marginTop: 24,
       flexDirection: 'row',
-      justifyContent: 'flex-end',
+      justifyContent: 'space-between',
     },
     editButton: {
       backgroundColor: '#007aff',

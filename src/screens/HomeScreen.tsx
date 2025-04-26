@@ -7,6 +7,9 @@ import {
   TouchableOpacity,
   Image,
   Linking,
+  Share,
+  Touchable,
+  Pressable,
 } from 'react-native';
 import {AxiosError} from 'axios';
 import {useTheme, Avatar} from 'react-native-paper';
@@ -86,7 +89,12 @@ export default function HomeScreen() {
           <TouchableOpacity
             onPress={() => onCall(member.phoneNumber)}
             style={styles.callButton}>
-            <Avatar.Icon icon="folder" />
+            <Avatar.Icon
+              icon="phone"
+              size={48}
+              color="#ffffff"
+              style={{backgroundColor: '#1fe087'}}
+            />
           </TouchableOpacity>
         </View>
 
@@ -103,10 +111,22 @@ export default function HomeScreen() {
 
         {/* 카드 하단 - 수정 버튼 */}
         <View style={styles.cardFooter}>
-          <TouchableOpacity
-            onPress={() => onEdit(member)}
-            style={styles.editButton}>
-            <Text style={styles.editButtonText}>수정</Text>
+          <Pressable
+            onPress={async () => await Share.share({message: '공유할 메시지'})}>
+            <Avatar.Icon
+              icon="share-all-outline"
+              size={40}
+              color={theme.colors.primary}
+              style={{backgroundColor: theme.colors.primaryContainer}}
+            />
+          </Pressable>
+          <TouchableOpacity onPress={() => onEdit(member)}>
+            <Avatar.Icon
+              icon="account-edit-outline"
+              size={40}
+              color={theme.colors.primary}
+              style={{backgroundColor: theme.colors.primaryContainer}}
+            />
           </TouchableOpacity>
         </View>
       </View>
