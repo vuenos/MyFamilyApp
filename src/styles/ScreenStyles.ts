@@ -77,7 +77,12 @@ export const ScreenStyles = (theme: MD3Theme) =>
     text: {
       fontSize: 16,
       color: '#333',
+      fontWeight: 'bold',
       marginBottom: 4,
+    },
+    textLabel: {
+      color: theme.colors.primary,
+      fontWeight: 'normal',
     },
     cardFooter: {
       display: 'flex',

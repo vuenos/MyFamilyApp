@@ -100,12 +100,22 @@ export default function HomeScreen() {
 
         {/* 카드 본문 */}
         <View style={styles.cardBody}>
-          <Text style={styles.text}>Age: {member.age}</Text>
-          <Text style={styles.text}>Mobile: {member.phoneNumber}</Text>
-          <Text style={styles.text}>Birthday: {member.birthdate}</Text>
-          <Text style={styles.text}>Address: {member.address}</Text>
+          <Text style={styles.text}>
+            <Text style={styles.textLabel}>Age:</Text> {member.age}
+          </Text>
+          <Text style={styles.text}>
+            <Text style={styles.textLabel}>Mobile:</Text> {member.phoneNumber}
+          </Text>
+          <Text style={styles.text}>
+            <Text style={styles.textLabel}>Birthday:</Text> {member.birthdate}
+          </Text>
+          <Text style={styles.text}>
+            <Text style={styles.textLabel}>Address:</Text> {member.address}
+          </Text>
           {member.note ? (
-            <Text style={styles.text}>Note: {member.note}</Text>
+            <Text style={styles.text}>
+              <Text style={styles.textLabel}>Note:</Text> {member.note}
+            </Text>
           ) : null}
         </View>
 
