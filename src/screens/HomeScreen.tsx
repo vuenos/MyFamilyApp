@@ -8,7 +8,6 @@ import {
   Image,
   Linking,
   Share,
-  Touchable,
   Pressable,
 } from 'react-native';
 import {AxiosError} from 'axios';
