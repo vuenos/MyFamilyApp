@@ -43,7 +43,7 @@ const Footer = () => {
   const CurrentScreen = routes[index].component;
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} id="container">
       <View style={styles.content}>
         <CurrentScreen />
       </View>
@@ -75,9 +75,11 @@ const Footer = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: '100%',
   },
   content: {
     flex: 1,
+    width: '100%',
   },
   footer: {
     flexDirection: 'row',

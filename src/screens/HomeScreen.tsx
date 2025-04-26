@@ -1,12 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, Animated, Text, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Animated,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  Linking,
+} from 'react-native';
 import {AxiosError} from 'axios';
-import {useTheme} from 'react-native-paper';
+import {useTheme, Avatar} from 'react-native-paper';
 import {axiosInstance} from '../libs/axiosClient.ts';
 import {ScreenStyles} from '../styles/ScreenStyles.ts';
 import ScrollView = Animated.ScrollView;
 
 interface FamilyMember {
+  _id: string;
   name: string;
   age: number;
   photo: string | null;
@@ -51,9 +60,61 @@ export default function HomeScreen() {
     getFamilyMembers();
   }, []);
 
+  const MemberCard = ({
+    member,
+    onCall,
+    onEdit,
+  }: {
+    member: FamilyMember;
+    onCall: (phoneNumber: string) => void;
+    onEdit: (member: FamilyMember) => void;
+  }) => {
+    return (
+      <View style={styles.card}>
+        {/* 카드 상단 - 아바타 / 이름 / 전화 버튼 */}
+        <View style={styles.cardHeader}>
+          <View style={styles.avatarWrapper}>
+            <Image
+              source={require('../assets/avatar.png')} // 아바타 이미지 경로 (또는 URL 사용 가능)
+              style={styles.avatar}
+            />
+          </View>
+          <View style={styles.headerText}>
+            <Text style={styles.name}>{member.name}</Text>
+            <Text style={styles.relation}>{member.relation}</Text>
+          </View>
+          <TouchableOpacity
+            onPress={() => onCall(member.phoneNumber)}
+            style={styles.callButton}>
+            <Avatar.Icon icon="folder" />
+          </TouchableOpacity>
+        </View>
+
+        {/* 카드 본문 */}
+        <View style={styles.cardBody}>
+          <Text style={styles.text}>Age: {member.age}</Text>
+          <Text style={styles.text}>Mobile: {member.phoneNumber}</Text>
+          <Text style={styles.text}>Birthday: {member.birthdate}</Text>
+          <Text style={styles.text}>Address: {member.address}</Text>
+          {member.note ? (
+            <Text style={styles.text}>Note: {member.note}</Text>
+          ) : null}
+        </View>
+
+        {/* 카드 하단 - 수정 버튼 */}
+        <View style={styles.cardFooter}>
+          <TouchableOpacity
+            onPress={() => onEdit(member)}
+            style={styles.editButton}>
+            <Text style={styles.editButtonText}>수정</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
       {isLoading && (
         <ActivityIndicator size="large" color={theme.colors.primary} />
       )}
@@ -65,38 +126,15 @@ export default function HomeScreen() {
       )}
 
       {!isLoading && !fetchError && (
-        <ScrollView>
-          {familyMember.length > 0 ? (
-            familyMember.map((member, index) => (
-              <View key={index} style={styles.card}>
-                <Text style={styles.cardText}>Name: {member.name}</Text>
-                <Text style={styles.cardText}>Age: {member.age}</Text>
-                <Text style={styles.cardText}>Relation: {member.relation}</Text>
-                <Text style={styles.cardText}>
-                  Mobile: {member.phoneNumber}
-                </Text>
-                <Text style={styles.cardText}>
-                  Birthday: {member.birthdate}
-                </Text>
-                <Text style={styles.cardText}>Address: {member.address}</Text>
-                <Text style={styles.cardText}>Note: {member.note}</Text>
-                <Text style={styles.cardText}>
-                  createdAt:{' '}
-                  {member.createdAt
-                    ? new Date(member.createdAt).toLocaleString('ko-KR')
-                    : 'N/A'}
-                </Text>
-                <Text style={styles.cardText}>
-                  updatedAt:{' '}
-                  {member.updatedAt
-                    ? new Date(member.updatedAt).toLocaleString('ko-KR')
-                    : 'N/A'}
-                </Text>
-              </View>
-            ))
-          ) : (
-            <Text>가족 정보가 없습니다.</Text>
-          )}
+        <ScrollView style={styles.scrollContainer}>
+          {familyMember.map(member => (
+            <MemberCard
+              key={member._id}
+              member={member}
+              onCall={phoneNumber => Linking.openURL(`tel:${phoneNumber}`)}
+              onEdit={member => console.log('Edit:', member)}
+            />
+          ))}
         </ScrollView>
       )}
     </View>
