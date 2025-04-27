@@ -18,10 +18,10 @@ export default function AuthScreen() {
   return (
     <View style={styles.container}>
       <View>
-        <Pressable onPress={() => authGoogleRequest()}>
+        <Pressable onPress={authGoogleRequest}>
           <Text>Google 로그인</Text>
         </Pressable>
-        <Pressable onPress={() => authKakaoRequest()}>
+        <Pressable onPress={authKakaoRequest}>
           <Text>카카오톡 로그인</Text>
         </Pressable>
       </View>

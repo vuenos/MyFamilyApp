@@ -3,5 +3,6 @@ import FamilyScreen from './FamilyScreen';
 import MedicalScreen from './MedicalScreen';
 import MyPage from './MyPage';
 import AuthScreen from './AuthScreen.tsx';
+import GetStared from './GetStartedScreen.tsx';
 
-export {HomeScreen, FamilyScreen, MedicalScreen, MyPage, AuthScreen};
+export {GetStared, HomeScreen, FamilyScreen, MedicalScreen, MyPage, AuthScreen};
