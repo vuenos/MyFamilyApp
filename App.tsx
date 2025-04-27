@@ -4,31 +4,15 @@
  *
  * @format
  */
-
 import React from 'react';
-import {
-  ScrollView,
-  StatusBar,
-  Text,
-  View,
-} from 'react-native';
-
+import {Header, Footer} from './components';
 
 function App(): React.JSX.Element {
-
-
   return (
-    <View>
-      <StatusBar
-        barStyle="dark-content"
-      />
-      <ScrollView>
-
-        <View>
-          <Text>Hello</Text>
-        </View>
-      </ScrollView>
-    </View>
+    <>
+      <Header />
+      <Footer />
+    </>
   );
 }
 
