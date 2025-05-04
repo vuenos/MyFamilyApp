@@ -101,4 +101,20 @@ export const ScreenStyles = (theme: MD3Theme) =>
       fontWeight: '600',
       fontSize: 14,
     },
+
+    resultContainer: {
+      flexDirection: 'column',
+      width: '100%',
+      padding: 24,
+    },
+    button: {
+      backgroundColor: '#FEE500',
+      borderRadius: 40,
+      borderWidth: 1,
+      width: 250,
+      height: 40,
+      paddingHorizontal: 20,
+      paddingVertical: 10,
+      marginTop: 10,
+    },
   });

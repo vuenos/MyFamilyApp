@@ -1,7 +1,13 @@
 import React, {useState, useMemo} from 'react';
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {HomeScreen, FamilyScreen, MedicalScreen, MyPage} from '../src/screens';
+import {
+  HomeScreen,
+  FamilyScreen,
+  MedicalScreen,
+  MyPage,
+  AuthScreen,
+} from '../src/screens';
 
 const Footer = () => {
   const [index, setIndex] = useState(0);
@@ -32,7 +38,7 @@ const Footer = () => {
       {
         key: 'account',
         title: '내 정보',
-        component: MyPage,
+        component: AuthScreen,
         focusedIcon: 'account-circle',
         unfocusedIcon: 'account-circle-outline',
       },
