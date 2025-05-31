@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyFaqmilyApp</string>
+    <string name="kakao_app_key">a1bddf09bf6fcc1da7f77e725b12177c</string>
 </resources>

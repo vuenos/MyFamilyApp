@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.myfaqmilyapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
@@ -26,5 +26,18 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
+      <activity
+       android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+       android:exported="true">
+      <intent-filter>
+          <action android:name="android.intent.action.VIEW" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <category android:name="android.intent.category.BROWSABLE" />
+
+          <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth“ -->
+          <data android:host="oauth"
+              android:scheme="kakaoa1bddf09bf6fcc1da7f77e725b12177c" />
+      </intent-filter>
+    </activity>
     </application>
 </manifest>
